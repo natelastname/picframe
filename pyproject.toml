@@ -1,0 +1,34 @@
+#
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+#
+# Minimum requirements for the build system to execute.
+[build-system]
+# PEP 508 specifications:
+requires = ["setuptools", "wheel"]
+
+# https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
+[project]
+name = "picframe"
+version = "1.0.0"
+description = "Apply a decorative frame to images"
+readme = "README.md"
+authors = [
+  {name = "Nathan Nichols", email = "nathannichols454@gmail.com"},
+]
+license = {file = "LICENSE"}
+keywords = ["aesthetic", "design", "decoration"]
+dependencies = [
+  'Pillow >= 10.0.0',
+  'numpy >= 1.0.0'
+]
+
+
+# Will be
+[project.scripts]
+spam-cli = "mymodule:replace_me"
+
+[project.urls]
+Homepage = "https://resultsmotivated.com/"
+#Documentation = "https://readthedocs.org"
+#Repository = "https://github.com/me/spam.git"
+#Issues = "https://github.com/me/spam/issues"
