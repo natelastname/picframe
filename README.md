@@ -13,18 +13,18 @@ the following images.)
 
 # Example 1
 
-[pom.png](demo_imgs/pom.png)
-[pom-framed.png](demo_imgs/pom-framed.png)
+![pom.png](demo_imgs/pom.png)
+![pom-framed.png](demo_imgs/pom-framed.png)
 
 
 # Example 2
 
-[coolguy1.png](demo_imgs/coolguy1.png)
-[coolguy1-framed.png](demo_imgs/coolguy1-framed.png)
+![coolguy1.png](demo_imgs/coolguy1.png)
+![coolguy1-framed.png](demo_imgs/coolguy1-framed.png)
 
 
 # Example 3
 
-[test.png](demo_imgs/test.png)
-[test-framed.png](demo_imgs/test-framed.png)
+![test.png](demo_imgs/test.png)
+![test-framed.png](demo_imgs/test-framed.png)
 
