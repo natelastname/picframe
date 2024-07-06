@@ -12,8 +12,10 @@ import picframe
 import importlib.resources
 
 
-im0 = PIL.Image.open("/home/nate/test.png")
-#im1 = picframe.picframe.beframe(im0, mattesize=32)
-im1 = picframe.picframe.beframe(im0, mattesize=0, bordersize=0)
+im0 = PIL.Image.open("/home/nate/test2.png")
+im1 = picframe.picframe.beframe(im0, mattesize=32)
+#im1 = picframe.picframe.beframe(im0, mattesize=0, bordersize=0)
 
 im1.show()
+
+breakpoint()

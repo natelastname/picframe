@@ -22,10 +22,8 @@ dependencies = [
   'numpy >= 1.0.0'
 ]
 
-
-# Will be
 [project.scripts]
-spam-cli = "mymodule:replace_me"
+picframe = "picframe:beframe"
 
 [project.urls]
 Homepage = "https://resultsmotivated.com/"
