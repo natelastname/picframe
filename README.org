@@ -10,7 +10,7 @@
 
 =picframe= is a Python package for putting frames around images. It
 is inspired by an old script with similar functionality by Fred
-Weinhaus (see: [[http://www.fmwconcepts.com/imagemagick/picframe/index.php][link]].) =Picframe= can be invoked from the command
+Weinhaus (see: [[http://www.fmwconcepts.com/imagemagick/picframe/index.php][link]].) =picframe= can be invoked from the command
 line, or in python code by importing the package as a python module.
 
 For example usage, see [[file:run.py][run.py]] (which is the script used to generate
