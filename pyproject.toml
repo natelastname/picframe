@@ -11,7 +11,7 @@ requires = ["setuptools", "wheel"]
 name = "picframe"
 version = "1.0.0"
 description = "Apply a decorative frame to images"
-readme = "README.md"
+readme = "README.rst"
 authors = [
   {name = "Nathan Nichols", email = "nathannichols454@gmail.com"},
 ]
@@ -27,6 +27,4 @@ picframe = "picframe:beframe"
 
 [project.urls]
 Homepage = "https://resultsmotivated.com/"
-#Documentation = "https://readthedocs.org"
-#Repository = "https://github.com/me/spam.git"
-#Issues = "https://github.com/me/spam/issues"
+Repository = "https://github.com/natelastname/picframe.git"

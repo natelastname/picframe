@@ -16,7 +16,6 @@ from . import picframe
 
 
 def get_builtin_frames():
-
     basedir = os.path.dirname(__file__)
     assets = os.path.join(basedir, "assets")
     builtin_images = []
@@ -29,12 +28,7 @@ def get_builtin_frames():
     builtin_images = sorted(builtin_images)
     return builtin_images
 
-
-
-
-
 def beframe():
-
     parser = argparse.ArgumentParser(
         prog="picframe",
         description="Apply a decorative frame to an image."
@@ -68,14 +62,14 @@ def beframe():
 
     parser.add_argument(
         "--mattesize",
-        help="Size of the matte.",
+        help="Size of the mat",
         default=24,
         type=int
     )
 
     parser.add_argument(
         "--mattecolor",
-        help="Color of the matte.",
+        help="Color of the mat",
         default="cornsilk",
         type=str
     )
@@ -83,7 +77,7 @@ def beframe():
 
     parser.add_argument(
         "--bordersize",
-        help="Size of the border.",
+        help="Size of the border",
         default=3,
         type=int
     )
@@ -95,6 +89,33 @@ def beframe():
         type=str
     )
 
+    parser.add_argument(
+        "--dropshadow_opacity",
+        help="Opacity of the dropshadow",
+        default=1.0,
+        type=float
+    )
+
+    parser.add_argument(
+        "--dropshadow_opacity",
+        help="Radius of gaussian blur",
+        default=6.0,
+        type=float
+    )
+
+    parser.add_argument(
+        "--dropshadow_offset_x",
+        help="x offset of the dropshadow",
+        default=0,
+        type=int
+    )
+
+    parser.add_argument(
+        "--dropshadow_offset_y",
+        help="y offset of the dropshadow",
+        default=0,
+        type=int
+    )
 
     args = parser.parse_args()
 
@@ -128,7 +149,11 @@ def beframe():
         mattesize=args.mattesize,
         mattecolor=args.mattecolor,
         bordersize=args.bordersize,
-        bordercolor=args.bordercolor
+        bordercolor=args.bordercolor,
+        dropshadow_opacity=args.dropshadow_opacity,
+        dropshadow_blur_radius=args.dropshadow_blur_radius,
+        dropshadow_offset_x=args.dropshadow_offset_x,
+        dropshadow_offset_y=args.dropshadow_offset_y
     )
 
     im1.save(outfile)

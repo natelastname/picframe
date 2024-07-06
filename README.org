@@ -1,0 +1,36 @@
+# -*- mode: org -*-
+#+TITLE: picframer
+#+AUTHOR: Nathan Nichols
+#+DATE: <2024-07-06>
+#+OPTIONS: author:t date:t
+#+KEYWORDS:
+
+
+* Introduction
+
+=picframe= is a Python package for putting frames around images. It
+is inspired by an old script with similar functionality by Fred
+Weinhaus (see: [[http://www.fmwconcepts.com/imagemagick/picframe/index.php][link]].) =Picframe= can be invoked from the command
+line, or in python code by importing the package as a python module.
+
+For example usage, see [[file:run.py][run.py]] (which is the script used to generate
+the following images.)
+
+* Example 1
+
+#+caption: pom.png
+[[file:demo_imgs/pom.png][pom.png]]
+[[file:demo_imgs/pom-framed.png][pom-framed.png]]
+
+* Example 2
+
+#+caption: coolguy1.png
+[[file:demo_imgs/coolguy1.png][coolguy1.png]]
+[[file:demo_imgs/coolguy1-framed.png][coolguy1-framed.png]]
+
+* Example 3
+
+#+caption: test.png
+[[file:demo_imgs/test.png][test.png]]
+[[file:demo_imgs/test-framed.png][test-framed.png]]
+

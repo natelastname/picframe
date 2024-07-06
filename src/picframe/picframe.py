@@ -8,9 +8,11 @@ Created on 2024-07-04T15:52:31-04:00
 import os
 import numpy as np
 import PIL.Image
+import PIL.ImageFilter
+import PIL.ImageDraw
 
 
-def borderize(arr0, arr1):
+def borderize(arr0, arr1, separate=False):
 
     if arr1.size == 0:
         return arr0
@@ -52,10 +54,16 @@ def borderize(arr0, arr1):
     output_arr[h2:h4-h2, w4-w2:, :] = side
     output_arr[h2:h4-h2, 0:w2, :] = np.flip(side, 1)
 
-    # insert the middle portion
-    output_arr[h2:h4-h2, w2:w4-w2, :] = arr0
+    outer = output_arr
 
-    return output_arr
+    inner = np.zeros(output_arr.shape)
+    inner[h2:h4-h2, w2:w4-w2, :] = arr0
+
+    if separate:
+        return (outer, inner)
+
+    return outer + inner
+
 
 def add_alpha(im0: PIL.Image.Image):
     if im0.mode == "RGB":
@@ -63,22 +71,30 @@ def add_alpha(im0: PIL.Image.Image):
         im0.putalpha(a_channel)
     return im0
 
+
+def multiply_achannel(im0: PIL.Image.Image, mult: float):
+    arr0 = np.array(im0)
+    arr0[:, :, 3] = arr0[:, :, 3] * mult
+    arr0 = arr0.astype('uint8')
+    return PIL.Image.fromarray(arr0, 'RGBA')
+
+
 def beframe(im0: PIL.Image.Image, frame: PIL.Image.Image, **kwargs):
     """
     Apply a frame to an image
     """
     params = {
         "frameid": 0,
-        "mattesize": 0,
+        "mattesize": 32,
         "mattecolor": "cornsilk",
-        "bordersize": 0,
+        "bordersize": 2,
         "bordercolor": "black",
-        # Controls the css "border: ridge" effect
-        #"shade": 0,
-        # HSV curve adjustment
-        #"adjust": "100,100,100",
-        #"opacity": 50,
-        #"distance": 1,
+        # Controls positioning and intensity of the dropshadow of the
+        # frame on the mat.
+        "dropshadow_opacity": 0.5,
+        "dropshadow_blur_radius": 6,
+        "dropshadow_offset_x": 0,
+        "dropshadow_offset_y": 0
     }
     params.update(kwargs)
 
@@ -98,14 +114,40 @@ def beframe(im0: PIL.Image.Image, frame: PIL.Image.Image, **kwargs):
         dtype=np.uint8
     )
 
-
     arr0 = np.array(add_alpha(im0))
     arr_frame = np.array(add_alpha(frame))
-
+    # add the border
     out0 = borderize(arr0, arr_border)
-    out0 = borderize(arr0, arr_matte)
-    out0 = borderize(out0, arr_frame)
-    out0 = out0.astype('uint8')
-    out0 = PIL.Image.fromarray(out0, 'RGBA')
+    # add the matte
+    out0 = borderize(out0, arr_matte)
+    # Create the frame
+    (outer, inner) = borderize(out0, arr_frame, separate=True)
 
-    return out0
+    black = np.zeros(arr_frame.shape)
+    black[:, :, 3] = 255
+    # Create the shadow by borderizing with a dummy image (a black square)
+    (shadow, _) = borderize(out0, black, separate=True)
+
+    outer = PIL.Image.fromarray(outer.astype('uint8'), 'RGBA')
+    inner = PIL.Image.fromarray(inner.astype('uint8'), 'RGBA')
+
+    shadow = PIL.Image.fromarray(shadow.astype('uint8'), 'RGBA')
+
+    radius = params["dropshadow_blur_radius"]
+    shadow = shadow.filter(PIL.ImageFilter.GaussianBlur(radius=radius))
+
+    shadow = multiply_achannel(shadow, params['dropshadow_opacity'])
+
+    shadow_offset = PIL.Image.new('RGBA', outer.size)
+    off_x = params['dropshadow_offset_x']
+    off_y = params['dropshadow_offset_y']
+    shadow_offset.paste(shadow, box=[off_x, off_y])
+
+    # combine the shadow and the frame
+    with_shadow = PIL.Image.alpha_composite(shadow_offset, outer)
+
+    #with_shadow = PIL.Image.composite(outer, shadow_offset, outer)
+    # combine the shadow/frame and the inner portion
+    result = PIL.Image.alpha_composite(inner, with_shadow)
+    #result = with_shadow
+    return result
