@@ -11,6 +11,13 @@ For example usage, see [run.py](run.py) (which is the script used to generate
 the following images.)
 
 
+# Features
+
+-   Comes with 12 **amazing** built-in frames (which are also called *mouldings*)
+-   The ability to specify thickness and color of the matting and decorative border
+-   Customizable drop shadow for added realism
+
+
 # Example 1
 
 ![pom.png](demo_imgs/pom.png)

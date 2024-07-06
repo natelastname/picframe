@@ -16,21 +16,26 @@ line, or in python code by importing the package as a python module.
 For example usage, see [[file:run.py][run.py]] (which is the script used to generate
 the following images.)
 
+* Features
+
+- Comes with 12 *amazing* built-in frames (which are also called /mouldings/)
+- The ability to specify thickness and color of the matting and decorative border
+- Customizable drop shadow for added realism
+
 * Example 1
 
 #+caption: pom.png
-[[file:demo_imgs/pom.png][pom.png]]
-[[file:demo_imgs/pom-framed.png][pom-framed.png]]
+![[file:demo_imgs/pom.png][pom.png]]
+![[file:demo_imgs/pom-framed.png][pom-framed.png]]
 
 * Example 2
 
 #+caption: coolguy1.png
-[[file:demo_imgs/coolguy1.png][coolguy1.png]]
-[[file:demo_imgs/coolguy1-framed.png][coolguy1-framed.png]]
+![[file:demo_imgs/coolguy1.png][coolguy1.png]]
+![[file:demo_imgs/coolguy1-framed.png][coolguy1-framed.png]]
 
 * Example 3
 
 #+caption: test.png
-[[file:demo_imgs/test.png][test.png]]
-[[file:demo_imgs/test-framed.png][test-framed.png]]
-
+![[file:demo_imgs/test.png][test.png]]
+![[file:demo_imgs/test-framed.png][test-framed.png]]

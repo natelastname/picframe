@@ -19,7 +19,12 @@ frames = picframe.get_builtin_frames()
 path = os.path.join(demo_imgs, "coolguy1.png")
 img = PIL.Image.open(path)
 frame = PIL.Image.open(frames[0])
-framed = picframe.picframe.beframe(img, frame)
+framed = picframe.picframe.beframe(
+    img,
+    frame,
+    dropshadow_blur_radius=24
+)
+
 outfile = os.path.join(demo_imgs, "coolguy1-framed.png")
 framed.save(outfile)
 
@@ -28,8 +33,8 @@ framed.save(outfile)
 ######################################################################
 path = os.path.join(demo_imgs, "pom.png")
 img = PIL.Image.open(path)
-frame = PIL.Image.open(frames[3])
-framed = picframe.picframe.beframe(img, frame)
+frame = PIL.Image.open(frames[10])
+framed = picframe.picframe.beframe(img, frame, dropshadow_blur_radius=32)
 outfile = os.path.join(demo_imgs, "pom-framed.png")
 framed.save(outfile)
 
@@ -45,8 +50,8 @@ framed = picframe.picframe.beframe(
     mattecolor="purple",
     bordersize=0,
     bordercolor="green",
-    dropshadow_opacity=0.9,
-    dropshadow_blur_radius=6,
+    dropshadow_opacity=1.0,
+    dropshadow_blur_radius=24,
     dropshadow_offset_x=-10,
     dropshadow_offset_y=0
 )
